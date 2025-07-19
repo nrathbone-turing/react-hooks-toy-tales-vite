@@ -7,14 +7,15 @@ function ToyForm({ onAddToy }) {
   function handleChange(event) {
     const { name, value } = event.target;
     
+    //maintaining state immutability and ensuring it's updated cleanly
     setFormData({ ...formData, [name]: value });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    const newToy = { ...formData, likes: 0 };
+    const newToy = { ...formData, likes: 0 }; // default value, not requiring users to submit for new toys
     
-    onAddToy(newToy);
+    onAddToy(newToy); // adding the prop to pass up to App.jsx into `handleAddToy` function for the POST api call
     setFormData({ name: "", image: "" }); // Reset form after submission
   }
  
@@ -25,8 +26,8 @@ function ToyForm({ onAddToy }) {
         <input
           type="text"
           name="name"
-          value={formData.name}
-          onChange={handleChange}
+          value={formData.name} // controlled input
+          onChange={handleChange} // controlled input
           placeholder="Enter a toy's name..."
           className="input-text"
         />
@@ -34,8 +35,8 @@ function ToyForm({ onAddToy }) {
         <input
           type="text"
           name="image"
-          value={formData.image}
-          onChange={handleChange}
+          value={formData.image} // controlled input
+          onChange={handleChange} // controlled input
           placeholder="Enter a toy's image URL..."
           className="input-text"
         />
