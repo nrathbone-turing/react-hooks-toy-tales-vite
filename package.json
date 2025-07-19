@@ -31,7 +31,10 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "server": "json-server db.json -p 3001",
-    "test": "vitest"
+    "test": "vitest",
+    "seed": "cp seed.json db.json",
+    "start-server": "npx json-server --watch db.json --port 3001",
+    "reset": "npm run seed && npm run start-server"
   },
   "eslintConfig": {
     "extends": [
