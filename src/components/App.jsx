@@ -72,20 +72,23 @@ function App() {
     .catch(err => setError(err.message));
   };
 
-  const fetchToys = async () => {
-    setError(null)
-    
-    try {
-      const response = await fetch('http://localhost:3001/toys')
-      if (!response.ok) throw new Error('Something went wrong')
-      const data = await response.json()
-      setToys(data)
-    } catch (err) {
-      setError(err.message)
+  useEffect(() => {
+    // moved the async function to be defined inside useEffect
+    async function fetchToys() {
+      setError(null);
+      
+      try {
+        const response = await fetch('http://localhost:3001/toys');
+        if (!response.ok) throw new Error('Something went wrong');
+        const data = await response.json();
+        setToys(data);
+      } catch (err) {
+        setError(err.message);
+      }
     }
-  }
-  
-  useEffect(() => fetchToys(), []) // starting state of an empty dependency array
+    
+    fetchToys(); // call the function here but not as a return value
+  }, []); // starting state of an empty dependency array
 
   return (
     <>
