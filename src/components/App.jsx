@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import ToyForm from "./ToyForm";
 import ToyContainer from "./ToyContainer";
-import ToyCard from "./ToyCard";
 
 function App() {
   const [showForm, setShowForm] = useState(false);
@@ -63,6 +62,7 @@ function App() {
         onDeleteToy={handleDeleteToy}
         onLikeToy={handleLikeToy}
       />
+      {error && <p style={{ color: 'red' }}>Error: {error}</p>}
     </>
   );
 }
