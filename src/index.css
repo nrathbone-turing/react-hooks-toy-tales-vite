@@ -19,6 +19,9 @@ body {
 
 #toy-collection {
   margin: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .card {
@@ -26,16 +29,30 @@ body {
   border: grey solid 1px;
   padding: 1rem;
   width: 15rem;
-  height: 25rem;
+  min-height: 25rem;
+  height: auto;
   display: inline-grid;
   margin: 1rem 2rem;
   box-shadow: 3px 4px #e04b52;
+  box-sizing: border-box;
+  overflow: hidden;
+  flex: 0 0 15rem;
 }
 
 .toy-avatar {
   justify-self: center;
-  height: 12rem;
-  width: auto;
+  height: 200px;
+  width: 100%;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
 }
 
 button {
@@ -48,6 +65,7 @@ button {
   color: whitesmoke;
   font-size: 18px;
   justify-self: center;
+  box-sizing: border-box;
 }
 
 .buttonContainer {
