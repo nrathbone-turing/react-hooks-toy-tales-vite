@@ -6,10 +6,11 @@ function ToyContainer({ toys, onLikeToy, onDeleteToy }) {
     <div id="toy-collection">
       {toys.map(toy => (
         <ToyCard 
-          id={toys.id}
-          name={toys.name}
-          image={toys.image}
-          likes={toys.likes}
+          key={toy.id}
+          id={toy.id}
+          name={toy.name}
+          image={toy.image}
+          likes={toy.likes}
         />
       ))}
     </div>
