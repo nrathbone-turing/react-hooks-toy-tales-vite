@@ -26,7 +26,9 @@ function App() {
     .then(response => response.json())
     // Using spread operator to append new toy object to the end of the previous `toys` array
     // Doing it this way instead of calling `.push()` to make sure the state is updated immutably
-    .then((newToyFromServer) => setToys([...toys, newToyFromServer]))
+    .then((newToyFromServer) => 
+      setToys((prevToys) => [...prevToys, newToyFromServer])
+    )
     .catch(err => setError(err.message));
 
   }
