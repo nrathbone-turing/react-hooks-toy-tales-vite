@@ -37,11 +37,13 @@ function App() {
     fetch(`http://localhost:3001/toys/${id}`, {
       method:"DELETE"
     })
-    .then(
+    .then(() => {
       // Remove from DOM with `.filter()` to not mess with the remaining toys
-      setToys(toys.filter(toy => toy.id !== id)),
+      setToys(toys => 
+        toys.filter(toy => toy.id !== id)
+      ),
       console.log("Toy donated")
-    )
+    })
     .catch(err => setError(err.message));
   };
   
