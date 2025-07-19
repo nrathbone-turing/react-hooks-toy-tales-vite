@@ -33,6 +33,43 @@ function App() {
 
   }
 
+  function handleDeleteToy(id) {
+    fetch(`http://localhost:3001/toys/${id}`, {
+      method:"DELETE"
+    })
+    .then(
+      // Remove from DOM with `.filter()` to not mess with the remaining toys
+      setToys(toys.filter(toy => toy.id !== id)),
+      console.log("Toy donated")
+    )
+    .catch(err => setError(err.message));
+  };
+  
+  // Pass both the `id` and `likes` value up via the `onLikeToy` prop in the button
+  function handleLikeToy(id, currentLikes) {
+    // Incrementing the existing value by +=1 when event is handled
+    const updatedLikes = currentLikes + 1
+    
+    // PATCH api call to re-render the toys with new values
+    fetch(`http://localhost:3001/toys/${id}`, {
+      method:"PATCH",
+      headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ likes: updatedLikes })
+    })
+    .then(response => response.json())
+    .then(updatedToy => {
+      setToys(toys =>
+        // Update the toy that was liked using .map() instead of re-fetching all toys
+        toys.map(toy =>
+          toy.id === updatedToy.id ? updatedToy : toy
+        )
+      )
+    })   
+    .catch(err => setError(err.message));
+  };
+
   const fetchToys = async () => {
     setError(null)
     
@@ -47,10 +84,6 @@ function App() {
   }
   
   useEffect(() => fetchToys(), []) // starting state of an empty dependency array
-
-  // placeholder variables for now
-  const handleDeleteToy = () => {};
-  const handleLikeToy = () => {};
 
   return (
     <>
