@@ -11,6 +11,8 @@ function ToyContainer({ toys, onLikeToy, onDeleteToy }) {
           name={toy.name}
           image={toy.image}
           likes={toy.likes}
+          onLikeToy={onLikeToy}
+          onDeleteToy={onDeleteToy}
         />
       ))}
     </div>
